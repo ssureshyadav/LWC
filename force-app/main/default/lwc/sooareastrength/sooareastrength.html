@@ -1,0 +1,75 @@
+<template>
+        <template if:true={isProd}>
+            <lightning-input type="checkbox" label="Same as R&D" onchange={copyRandD}></lightning-input><br>
+        </template>
+        <!--<lightning-record-edit-form object-api-name="SOO__c"  onsuccess={handleSaveClick} record-id={recordId}>
+            Alignment
+            <template if:true={isProd}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <span class="slds-form-element__label">Account Sales</span>
+                            <lightning-input-field field-name="SMDMA__c" variant="label-hidden"></lightning-input-field>          
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-form-element__label">BU BM</span>
+                            <lightning-input-field label="BU BM" field-name="BU_DMA__c" variant="label-hidden" onchange={handleBUBM}></lightning-input-field>
+                    </div>
+                </div>
+            </template>
+            <template if:false={isProd}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <span class="slds-form-element__label">Account Sales</span>
+                            <lightning-input-field field-name="SMDMAProduction__c" variant="label-hidden"></lightning-input-field>          
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-form-element__label">BU BM</span>
+                            <lightning-input-field label="BU BM" field-name="BU_DMA_Production__c" onchange={handleBUBM} variant="label-hidden"></lightning-input-field>
+                    </div>
+                </div>
+            </template> -->
+        <h3 class="slds-section__title">
+                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                 <span class="slds-truncate" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 2a. Area of Strength (confirmed with customer and accepted by customer)</span>
+                </button>
+              </h3>
+        <template if:true={isRd}>
+            <template  for:each={objcmpcount} for:item="obj">
+                <c-createareastrength key={obj.label} selectedvalue={obj.label} areastrength={obj.value} ondeleteselected={handledeletedvalue} onvaluechanged={handlerValueChange}></c-createareastrength>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createRDRecord}></lightning-button-icon>
+            </div>
+        </template>
+    
+        <template if:true={isProd}>
+            <template  for:each={prodobjcmpcount} for:item="obj">
+                    <c-createareastrength key={obj.label} selectedvalue={obj.label} areastrength={obj.value} ondeleteselected={handleProddeletedvalue} onvaluechanged={handlerProdValueChange}></c-createareastrength>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createProdRecord}></lightning-button-icon>
+            </div>
+            <br/>
+        </template>
+        <!--<template if:true={bubm}>
+            <template if:false={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <lightning-input-field field-name="BU_BM_CommentsDMA_RD__c"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+            <template if:true={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <lightning-input-field field-name="BU_BM_CommentsDMA_Production__c"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+        </template>
+        <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Save & Next"> </lightning-button>
+    </lightning-record-edit-form>-->
+    <div style="display: none;">
+        <button class="submitButton" type="button" onclick={handleSaveClick}>Save & Next</button>
+    </div>
+</template>

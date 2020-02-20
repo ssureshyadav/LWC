@@ -1,0 +1,13 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td>
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td><lightning-input type="text" label="Consequence" value={localconsequences.Applied_CNA1__c} onchange={handleAppliedCNA}></lightning-input></td>
+                <td><lightning-input style="border-right: 2px solid #000; border-color: grey;padding-right:1em;" type="text" label="$Value" value={localconsequences.Applied_CNA_Value1__c} onchange={handleAppliedCNAValue}></lightning-input></td>
+                <td><lightning-input type="text" label="Consequence" value={localconsequences.Customer_CNA1__c} onchange={handleCustomerCNA}></lightning-input></td>
+                <td><lightning-input type="text" label="$Value" value={localconsequences.Customer_CNA_Value1__c} onchange={handleCustomerCNAValue}></lightning-input></td>
+            </tr>
+        </table>
+</template>

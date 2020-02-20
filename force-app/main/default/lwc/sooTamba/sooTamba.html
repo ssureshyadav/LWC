@@ -1,0 +1,122 @@
+<template>
+	<h3 class="slds-section__title">
+		<button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+			<span class="slds-truncate" title="Section 1d.TAMBA Tagging" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 1d.TAMBA Tagging</span>
+		</button>
+	</h3>
+
+<!--<div class="slds-section slds-is-open">
+<div class="slds-align_absolute-center">
+<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+<thead >
+<tr style="font-weight:bold">
+<th class="slds-cell-shrink" scope="col">
+<!-<span class="slds-assistive-text" id="check-group-header">Choose a row to select</span>
+<span class="slds-checkbox">
+<input type="checkbox" name="options" id="checkbox-all" value="checkbox-all" aria-labelledby="check-button-label-all check-group-header" />
+<label class="slds-checkbox__label" for="checkbox-all" id="check-button-label-all">
+<span class="slds-checkbox_faux"></span>
+<span class="slds-form-element__label slds-assistive-text">Select all</span>
+</label>
+</span>->
+</th>
+<th style="font-weight:bold">TAMBA ID</th>
+<th style="font-weight:bold">Primary</th>
+<th style="font-weight:bold">BU</th>
+<th style="font-weight:bold">Device Type</th>
+<th style="font-weight:bold">Customer Node</th>
+<!-<th style="font-weight:bold">AMAT Node</th>->
+<th style="font-weight:bold;width:30%; text-align:center;">Application Name (Customer)</th>
+<th style="font-weight:bold">P-TAMBA Year</th>
+<th style="font-weight:bold">Criticality</th>
+<th style="font-weight:bold">Differentiation</th>
+<th style="font-weight:bold">Adoption Probability</th>
+</tr>
+</thead> 
+<tbody style="color:black!important; ">
+<template for:each={lstTamba} for:item="tamba">                               
+<tr key={tamba.id}>
+<td>
+<lightning-input data-value={tamba.id} id={tamba.Name} type="checkbox" onchange={handletambaChange}></lightning-input>
+</td>
+<td>{tamba.Name}</td>
+<td>
+<lightning-input data-value={tamba.id} type="checkbox" checked={tamba.Primary_Tamba__c} onchange={handletambaPrimary}></lightning-input>
+</td>
+<td>{tamba.BU__c}</td>
+<td>
+<template if:true={tamba.Device_Type__c}>
+{tamba.Device_Type__c}
+<!-{tamba.Device_Type__r.Name} ->
+</template>
+</td>
+<td>
+<template if:true={tamba.Customer_Node__c}>
+{tamba.Customer_Node__c}
+<!-{tamba.Customer_Node__r.Name}->
+</template>
+</td>
+<!-<td>
+<template if:true={tamba.AMAT_Node__c}>
+{tamba.AMAT_Node__r.Name} 
+</template>
+</td>->
+<td style="text-align:center;">
+<template if:true={tamba.Application_Name_Customer__c}>
+{tamba.Application_Name_Customer__c}
+<!-{tamba.Application_Name_Customer__r.Name}->
+</template>
+</td>
+<td style="text-align:center;">{tamba.Prioritized_TAMBA_FYs__c} </td>
+<td style="text-align:center;">{tamba.Criticality__c} </td>
+<td style="text-align:center;">{tamba.Differentiation__c} </td>
+<td style="text-align:center;">{tamba.Account_Adoption_Probability__c} </td>
+</tr>
+</template>
+</tbody>
+</table>       
+</div>
+</div>-->
+<div class="slds-section slds-is-open">
+        <div class="slds-align_absolute-center">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                        <tr style="font-weight:bold">
+                        <th class="slds-cell-shrink" scope="col"></th>
+                        <th style="font-weight:bold">TAMBA ID</th>
+                        <th style="font-weight:bold">Primary</th>
+                        <th style="font-weight:bold">BU</th>
+                        <th style="font-weight:bold">Device Type</th>
+                        <th style="font-weight:bold">Customer Node</th>
+                        <th style="font-weight:bold;width:30%; text-align:center;">Application Name (Customer)</th>
+                        <th style="font-weight:bold">P-TAMBA Year</th>
+                        <th style="font-weight:bold">Criticality</th>
+                        <th style="font-weight:bold">Differentiation</th>
+                        <th style="font-weight:bold">Adoption Probability</th>
+                        </tr>
+                </thead> 
+        <tbody style="color:black!important; ">
+        <template for:each={samplelist} for:item="tamba">
+                <tr key={tamba.id}>
+                        <td>
+                        <lightning-input data-value={tamba.Name} type="checkbox" checked={tamba.isSoo} onchange={handletambaChange}></lightning-input>
+                        </td>
+                        <td style="text-align:center;">{tamba.Name}</td>
+                        <td>
+                        <lightning-input data-value={tamba.Name} type="checkbox" checked={tamba.ischecked} onchange={handlechange} disabled={tamba.isTamabaSelected}></lightning-input>
+                        </td>
+                        <td style="text-align:center;">{tamba.BU__c}</td>
+                        <td style="text-align:center;">{tamba.Device_Type__c}</td>
+                        <td style="text-align:center;">{tamba.Customer_Node__c}</td>
+                        <td style="text-align:center;">{tamba.Application_Name_Customer__c}</td>
+                        <td style="text-align:center;">{tamba.Prioritized_TAMBA_FYs__c} </td>
+                        <td style="text-align:center;">{tamba.Criticality__c} </td>
+                        <td style="text-align:center;">{tamba.Differentiation__c} </td>
+                        <td style="text-align:center;">{tamba.Account_Adoption_Probability__c} </td>
+                </tr>
+        </template>
+        </tbody>
+        </table>
+        </div>
+</div>
+</template>

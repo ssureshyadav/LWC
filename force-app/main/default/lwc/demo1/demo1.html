@@ -1,0 +1,36 @@
+<template>
+    <!--<template for:each={samplelist} for:item="tamba">
+        <tr key={tamba.Name}>
+            <td>
+                <lightning-input data-value={tamba.Name} type="checkbox" checked={tamba.ischecked} onchange={handlechange} ></lightning-input>
+            </td>
+            <td>
+                {tamba.Name}
+            </td>
+        </tr>
+    </template> -->
+    
+    <c-sootagging record-id="a072i000000BYLZAA4" ontambaselected={handleTambaselected} onproductscorecard={handleproductscorecard} onsave={handleSave}></c-sootagging> 
+    <!--<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <th>Field Name</th>
+            <th>SFDC <lightning-button variant="brand" label="Submit" title="" onclick={handleSFDC} class="slds-m-left_x-small"></lightning-button></th>
+            <th>WCIS <lightning-button variant="brand" label="Submit" title="" onclick={handleWCIS} class="slds-m-left_x-small"></lightning-button></th>
+        </thead>
+        <tbody>
+            <template for:each={mismatchRecords} for:item="obj">
+                <tr key={obj.fieldName}>
+                    <td>
+                        {obj.fieldName}
+                    </td>
+                    <td>
+                        {obj.sfdc}
+                    </td>
+                    <td>
+                        {obj.wcis}
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>-->
+</template>

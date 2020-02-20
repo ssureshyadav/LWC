@@ -1,0 +1,100 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td style="width:3%;">
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td style="width:8%;">
+                    <div class="form-group">
+                        <label class="slds-form-element__label slds-no-flex">TAMBA ID</label>
+                        <div>
+                            <select class="slds-select" onchange={handleTambaPicklist}>
+                                <template  for:each={tambaArray} for:item="item">
+                                    <option key={item.key} value={item.key}>{item.value}</option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="width:4%;">
+                    <lightning-input type="text" label="Application Name" value={localmilestone.Application_Name__c} disabled></lightning-input>
+                </td>
+                <td style="width:4%;">
+                    <lightning-input type="text" label="Customer Engagement" value={localmilestone.Customer_Engagement1__c} disabled></lightning-input>
+                </td>
+                <td style="width:8%;">
+                    <div class="form-group">
+                            <label class="slds-form-element__label slds-no-flex">Current Stage</label>
+                            <div>
+                                <select class="slds-select" onchange={handleStage}>
+                                    <template  for:each={stage} for:item="item">
+                                            <option key={item} value={item} >{item}</option>
+                                    </template>
+                                </select>
+                            </div>
+                    </div>
+                </td>
+                <td style="width:10%;">
+                        <div class="form-group">
+                                <label class="slds-form-element__label slds-no-flex">Target Milestone</label>
+                                <div>
+                                    <select class="slds-select" onchange={handlemilepicklist}>
+                                        <template  for:each={milepicklist} for:item="item">
+                                                <option key={item} value={item} >{item}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                        </div>
+                </td>
+                <td style="width:8%;">
+                        <lightning-input type="date" label="Milestone Due Date" value={localmilestone.Target_Date__c} onchange={handleTargetdate}></lightning-input>
+                </td>    
+                <td style="width:10%;">
+                        <div class="form-group">
+                                <label class="slds-form-element__label slds-no-flex">Milestone Status</label>
+                                <div>
+                                    <select class="slds-select" onchange={handlemilestoneStatus}>
+                                        <template  for:each={milestoneStatus} for:item="item">
+                                                <option key={item} value={item} >{item}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                        </div>
+                </td>
+                <td style="width:4%;">
+                    <lightning-input type="text" label="P-TAMBA Year" value={localmilestone.Prioritized_TAMBA_FYs__c} disabled></lightning-input>
+                </td>
+                <td style="width:35%;">
+                <template if:true={displayreason}>
+                    <td style="width:10%;">
+                            <div class="form-group">
+                                    <label class="slds-form-element__label slds-no-flex">PrimaryReason</label>
+                                    <div>
+                                        <select class="slds-select" onchange={handlePrimaryReason}>
+                                            <template  for:each={primaryreason} for:item="item">
+                                                    <option key={item} value={item} >{item}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                            </div>
+                    </td>
+                    <td style="width:10%;">
+                            <div class="form-group">
+                                    <label class="slds-form-element__label slds-no-flex">Proof</label>
+                                    <div>
+                                        <select class="slds-select" onchange={handleproof}>
+                                            <template  for:each={proof} for:item="item">
+                                                    <option key={item} value={item} >{item}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                            </div>
+                    </td>
+                    <td style="width:15%;">
+                        <lightning-textarea type="text" label="Additional Information" value={localmilestone.Additional_Information__c} onchange={handleAddInfo}></lightning-textarea>
+                    </td>
+                </template>
+                </td>
+            </tr>
+        </table>
+</template>

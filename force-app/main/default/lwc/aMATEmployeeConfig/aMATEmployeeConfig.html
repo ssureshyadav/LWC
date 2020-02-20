@@ -1,0 +1,96 @@
+<template>
+    Select AMAT Employee Record:
+        <select class="slds-select" onchange={handleEmployeeChange}>
+            <template  for:each={employeeRecords} for:item="obj">
+                <option key={obj.label} value={obj.value} >{obj.label}</option>
+            </template>
+        </select> 
+
+    <!--<div if:true={parentObjSelected}>    
+        Select child object:
+        <select class="slds-select" onchange={handlechildObjectChange}>
+            <template  for:each={childObjects} for:item="obj">
+                    <option key={obj.label} value={obj.value} >{obj.label}</option>
+            </template>
+        </select> 
+
+        <div if:true={condition}>
+                <lightning-combobox
+                        name="summarytype"
+                        label="Summary Type"
+                        value={value}
+                        placeholder="Summary Type"
+                        options={summaryOptions}
+                        onchange={handleSummaryTypeChange} >
+                </lightning-combobox>
+                
+                <div if:true={displayobjectFields}>
+                   <!- <select class="slds-select" onchange={handleFieldChange}>
+                        <template  for:each={objectFields} for:item="obj">
+                            <option key={obj.label} value={obj.value} >{obj.label}</option>
+                        </template>
+                    </select>->
+                    
+                    <template  for:each={dynamiccmpcount} for:item="obj">
+                        <c-dynamic-picklist key={obj.label} selectedvalue={obj.label} picklistvalues={objectFields} onpicklistvaluechange={hanldepicklistvaluechange} ondeleteselected={handledeletedvalue}></c-dynamic-picklist>
+                    </template>
+                    <lightning-button variant="base" label="+" title="Base action" onclick={mutatorMethod} class="slds-m-left_x-small"></lightning-button>
+                </div>
+
+                <div if:true={displaysaveButton}> <!- selectedField->
+                    <button type="button" onclick={handleSaveClick}>Save</button>
+                </div>
+
+        </div>
+    </div>
+    <div>
+        List of Rollup Summary Records
+       <!- <template  for:each={rollupRecords} for:item="obj">
+            <td key={obj.Name} >{obj.Name}</td>
+        </template> ->
+        <lightning-card title="Roll up List">
+            <div class="slds-card__body_inner">
+                <!- Start bear list ->
+                
+                <template if:true={rollupRecords}>
+                    <table>
+                        <thead>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Parent Field</th>
+                            <th>Child</th>
+                            <th>Child Field</th>
+                            <th>Summary Type</th>
+                        </thead>
+                        <tbody>
+                                <template for:each={rollupRecords} for:item="roll">
+                                    <tr key={roll.Name}>
+                                        <td>
+                                                <lightning-button variant="base" label="Edit" title={roll.Name} onclick={handleEdit} class="slds-m-left_x-small"></lightning-button>
+                                                |
+                                                <lightning-button variant="base" label="Delete" title={roll.Name} onclick={handleDelete} class="slds-m-left_x-small"></lightning-button>
+                                        </td>
+                                        <td>{roll.Name}</td>
+                                        <td>{roll.Parent_Field__c}</td>
+                                        <td>{roll.Child__c}</td>
+                                        <td>{roll.Child_Field__c}</td>
+                                        <td>{roll.Summary_Type__c}</td>
+                                    </tr>
+                                </template>
+                        </tbody>
+                    </table>
+                </template>
+                
+                <!- End bear list ->
+                <!- Data failed to load ->
+                <template if:true={error}>
+                    <div class="slds-text-color_error">
+                        An error occurred while loading the bear list
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+<!-<p>Selected Contact is: {selectedObject}</p>->
+-->
+</template>

@@ -1,0 +1,465 @@
+<template>
+
+<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+<div class="slds-modal__container">
+<!-- modal header start -->
+        <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+        <lightning-icon icon-name="utility:close"
+        alternative-text="close"
+        variant="inverse"
+        size="small" ></lightning-icon>
+        <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 class="slds-text-heading--medium" style="color:#706e6b;text-align:left;font-weight:bold;border-bottom:1px grey" >Sales Opportunity Optimizer™ (SOO)</h2>
+        <!--<div class="slds-modal__content slds-p-around_medium"> -->
+        <lightning-tabset active-tab-value={activeTabTopLevel}>
+        <lightning-tab label="Basic Info" value="1" onactive={handleParentActive}>
+                
+                <lightning-record-edit-form object-api-name="SOO__c" onload={handleLoad} onsubmit={handleSubmit}  onsuccess={handleSuccess} record-id={recordId}> <!-- onsubmit={handleSubmit}-->
+                <lightning-messages></lightning-messages> 
+                        <div class="slds-section slds-is-open">
+                                <div style="display: none;">
+                                        <lightning-input-field field-name="Primary_Product_Scorecard__c"></lightning-input-field>
+                                        <lightning-input-field field-name="SOOClone__c"></lightning-input-field> 
+                                </div>
+                        <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                <span class="slds-truncate" title=" Section 1a. Background" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 1a. Background</span>
+                                </button>
+                        </h3>
+                        <template if:true={recordId}>
+                                <div class="slds-col">
+                                        <lightning-output-field field-name="SOO_ID__c"></lightning-output-field>
+                                </div>
+                        </template>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Account__c" required data-id="accountInfo" onchange={handleSOOName}></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Segment__c" required onchange={handleSegmentchange}></lightning-input-field>
+                                </div>
+                                <div class="slds-col" >
+                                        <lightning-input-field field-name="Date__c" required></lightning-input-field>
+                                </div>
+                        </div>
+
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col" style="width:16em;">
+                                        <lightning-input-field field-name="Business_Unit__c" required data-id="businessUnit" onchange={handleSOOName}></lightning-input-field>
+                                </div>
+                                <div class="slds-col" style="padding-left: 110px;  width: 25%;">
+                                        <span class="slds-form-element__label">SOO Name : Customer/Fab/Device/Node/Application/Product/Objective</span>
+                                        <lightning-input-field field-name="Name" value={sooName} variant="label-hidden"></lightning-input-field>
+                                </div>
+                                <div class="slds-col" style="padding-right: 30px;">
+                                        <lightning-input-field field-name="Sales_Person__c" required value={userId}></lightning-input-field>
+                                </div>
+                        </div>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <template if:true={isCTOUSER}>
+                                                <lightning-input-field field-name="Program_Name__c"></lightning-input-field>
+                                        </template>
+                                </div>
+                                <div class="slds-col">
+
+                                </div>
+                                <div class="slds-col" style="margin-left:38em;">
+                                        <lightning-input-field field-name="BM_Person__c" required></lightning-input-field>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                <span class="slds-truncate" title="Section 1b. Internal Team" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;">Section 1b. Internal Team</span>
+                                </button>
+                        </h3>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_1__c"></lightning-input-field>          
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Sales_Team1__c" ></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_5__c"></lightning-input-field>
+                                </div>                                                                
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_5__c"></lightning-input-field>
+                                </div>
+                        </div>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_2__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_2__c" ></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_6__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_6__c" ></lightning-input-field>
+                                </div>
+                        </div>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_3__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_3__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_7__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_7__c"></lightning-input-field>
+                                </div>
+                        </div>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_Category_4__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="SOO_Team_4__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                <lightning-input-field field-name="SOO_Team_Category_8__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col">
+                                <lightning-input-field field-name="SOO_Team_8__c"></lightning-input-field>
+                                </div>
+                        </div>
+                </div>
+                <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                        <span class="slds-truncate" title=" Section 1f. Single Sales Objective (SSO)" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 1f. Single Sales Objective (SSO)</span>
+                                </button>
+                        </h3>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">Current SOO Status</span>
+                                        <lightning-helptext content="Latest status achieved or decided"></lightning-helptext>
+                                        <lightning-input-field field-name="Order_Status__c" variant="label-hidden" onchange={hanldestatusChange}></lightning-input-field>          
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <!--<lightning-input-field field-name="Opportunity_ID__c"></lightning-input-field>-->
+                                        <span class="slds-form-element__label">Opportunity Id</span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control">
+                                                {opportunityId}
+                                        </div>
+                                </div> 
+                                <div class="slds-col" style="width: 16%;">
+                                        <lightning-input-field field-name="Fab_Name__c"></lightning-input-field>
+                                </div> 
+                                <div class="slds-col" style="width: 16%;">
+                                        <lightning-input-field field-name="Target_Price_in_USD__c"></lightning-input-field>          
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <lightning-input-field field-name="Expected_PO_Date__c"></lightning-input-field>
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <lightning-input-field field-name="Target_Objective__c"></lightning-input-field>          
+                                </div>                                                         
+                        </div>
+                        <template if:true={displayreason}>
+                                <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Primary_reason_of_losing_the_business__c" required></lightning-input-field>          
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Reasons_for_Losing_this_SOO__c" required></lightning-input-field> 
+                                        </div>                                                         
+                                </div>
+                        </template>
+                <!-- <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Single_Sales_Objective__c"></lightning-input-field>          
+                                </div>                                                   
+                        </div>-->
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col" style="width: 16%;">
+                                <span class="slds-form-element__label">Account Name</span>
+                                <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <lightning-output-field field-name="Account__c" variant="label-hidden"></lightning-output-field>          
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">Device Type</span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control">{deviceType}</div>
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">Customer Node</span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control">{CustomerNode}</div>
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">  Application Name (Customer)</span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control"> {ApplicationName}</div>
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">  AMAT Product  </span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control">{AMATProduct}  </div>
+                                </div>
+                                <div class="slds-col" style="width: 16%;">
+                                        <span class="slds-form-element__label">Total Revenue in Million$</span>
+                                        <lightning-helptext content="Data pulled from Primary TAMBA"></lightning-helptext>
+                                        <div class="slds-form-element__control">${revenue}M</div>
+                                </div>
+
+                        </div>
+                </div>
+                <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                        <span class="slds-truncate" title=" Section 2d. Primary Competitor Information" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 2d. Primary Competitor Information</span>
+                                        </button>
+                        </h3>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="CompetitorCompany__c"></lightning-input-field>          
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Competitor_Product__c"></lightning-input-field>
+                                </div>                                                                
+                        </div>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Competitor_Product_Price__c"></lightning-input-field>          
+                                </div>  
+                                <div class="slds-col" style="height:32px;">
+                                        <lightning-input-field field-name="Bundle_Offer__c"></lightning-input-field>          
+                                </div>                                               
+                        </div>
+                <!-- <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Bundle_Offer__c"></lightning-input-field>          
+                                </div>                                                
+                        </div>-->
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Competitor_Product_Installation_Status__c"></lightning-input-field>          
+                                </div>                                                
+                        </div>
+                </div>
+                <template if:true={display4a}>
+                <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                <span class="slds-truncate" title="Section 4a. Booking Info" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;">Section 4a. Booking Info </span>
+                                </button>
+                        </h3>
+                        <div class="slds-grid slds-gutters">
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Amount_s__c"></lightning-input-field>          
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Decision_Date__c"></lightning-input-field>
+                                </div>                                                                
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="Ship_Date__c"></lightning-input-field>          
+                                </div>
+                                <div class="slds-col">
+                                        <lightning-input-field field-name="PO_Date__c"></lightning-input-field>
+                                </div>
+                        </div>
+                </div>
+                </template>
+                <template if:true={display4b}>
+                        <div class="slds-section slds-is-open">
+                                <h3 class="slds-section__title">
+                                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                                        <span class="slds-truncate" title="Section 4b. Large Deal Milestones (for AGS and CTO FCL Only)" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;">Section 4b. Large Deal Milestones (for AGS and CTO FCL Only)</span>
+                                        </button>
+                                </h3>
+                                <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Discovery_Complete_Customer_interest_con__c"></lightning-input-field>          
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Customer_champion_influencers_stkhldr__c"></lightning-input-field>
+                                        </div>      
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="SAM_SOM_DOW_documented__c"></lightning-input-field>          
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Product_Offering_Cost_modeling_resource__c"></lightning-input-field>
+                                        </div>                                                          
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Customer_and_Applied_risks_opportuniti__c"></lightning-input-field>          
+                                        </div>
+                                </div>
+                                <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Pricing_trade_table_strategy_and_closi__c"></lightning-input-field>
+                                        </div>      
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Proposal_approved_by_stakeholders_Box_7__c"></lightning-input-field>          
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Proposal_presented__c"></lightning-input-field>
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Negotiation__c"></lightning-input-field>          
+                                        </div>
+                                        <div class="slds-col">
+                                                <lightning-input-field field-name="Purchase_order_received_contract_signed__c"></lightning-input-field>
+                                        </div>                                                                
+                                </div>
+                        </div>
+                </template>
+                
+                <div style="display: none;">
+                        <lightning-button id="submitButton" class="submitButton" type="submit" name="update" label="Save & Next"> </lightning-button>
+                </div>
+                </lightning-record-edit-form>
+                
+        </lightning-tab>
+        <template if:true={showtambatagging}>
+                <lightning-tab label="Corporate & TAMBA Tagging" value="2" onactive={handleParentActive}>
+                <c-sootagging record-id={recordId} ontambaselected={handleTambaselected} onsave={handleSave}></c-sootagging>
+                </lightning-tab>
+        </template>
+        <template if:true={hasPSC}>
+                <lightning-tab label="Product Scorecard (PSC)" value="3" onactive={handleParentActive}>
+                        <div>
+                                <c-sooproductscorecard record-id={recordId} pscid={pscId} onsave={handleSave}></c-sooproductscorecard>
+                        </div>
+                </lightning-tab>
+        </template>
+        <template if:true={isUpdate}>
+        <lightning-tab label="R&D" value="4" onactive={handleParentActive}>
+        <template if:true={hasAccess}>
+        <lightning-tabset active-tab-value={activeTab}>
+                <lightning-tab label="Milestone" value="1" onactive={handleActive}> 
+                <div style="width: 150%;">
+                <template if:true={tambaselected}>
+                        <c-soomilestones record-id={recordId} type="RD" tambarecords={tambaselected} onsave={handleSave}></c-soomilestones>
+                </template>
+                </div>
+                </lightning-tab>
+                
+        <lightning-tab label="Decision Makers" value="2" onactive={handleActive}>
+                <div>
+                        <c-soodecisionmakers record-id={recordId} type="RD" onsave={handleSave}></c-soodecisionmakers>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="HVPs" value="3" onactive={handleActive}>
+                <div>
+                        <c-soohvps record-id={recordId} type="RD" onsave={handleSave}></c-soohvps>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="Area of Strength" value="4" onactive={handleActive}>
+                <div>
+                        <c-sooareastrength record-id={recordId} type="RD" onsave={handleSave}></c-sooareastrength>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="Identify Red Flag/Barriers and Strategy to overcome" value="5" onactive={handleActive}>
+                <div>
+                        <c-sooredflagstrategy record-id={recordId} type="RD" onsave={handleSave}></c-sooredflagstrategy>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="Action Items" value="6" onactive={handleActive}>
+                <div>
+                        <c-sootasks record-id={recordId} type="RD" onsave={handleSave}></c-sootasks>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="BU GM Help Needed" value="7" onactive={handleActive}>
+                <div>
+                        <c-sooexecutivehelp record-id={recordId} type="RD" onsave={handleSave}></c-sooexecutivehelp>
+                </div>
+        </lightning-tab>
+        <lightning-tab label="Economic Value Analysis (EVA) and Vale Price Setting (VPS)" value="8" onactive={handleActive}>
+                <div>
+                        <c-sooeconomicvalue record-id={recordId} type="RD" onsave={handleSave}></c-sooeconomicvalue>
+                </div>
+        </lightning-tab>
+
+        </lightning-tabset>
+        </template>
+        </lightning-tab>
+        <lightning-tab label="Production" value="5" onactive={handleParentActive}>
+                <template if:true={hasAccess}>
+                        <lightning-tabset active-tab-value={activeTab}>
+                        <template if:true={tambaselected}>
+                                <div style="width: 150%;">
+                                <lightning-tab label="Milestone" value="1" onactive={handleActive}>
+                                        <c-soomilestones record-id={recordId} type="Production" tambarecords={tambaselected} onsave={handleSave}></c-soomilestones>
+                                </lightning-tab>
+                                </div>
+                        </template>
+                        <lightning-tab label="Decision Makers" value="2" onactive={handleActive}>
+                                <div>
+                                        <c-soodecisionmakers record-id={recordId} type="Production" onsave={handleSave}></c-soodecisionmakers>
+                                </div>
+                        </lightning-tab>
+                        <lightning-tab label="HVPs" value="3" onactive={handleActive}>
+                                <div>
+                                        <c-soohvps record-id={recordId} type="Production" onsave={handleSave}></c-soohvps>
+                                </div>
+                        </lightning-tab>
+                        <lightning-tab label="Area of Strength" value="4" onactive={handleActive}>
+                                <div>
+                                        <c-sooareastrength record-id={recordId} type="Production" onsave={handleSave}></c-sooareastrength>
+                                </div>
+                        </lightning-tab>
+                        <lightning-tab label="Identify Red Flag/Barriers and Strategy to overcome" value="5" onactive={handleActive}>
+                                <div>
+                                        <c-sooredflagstrategy record-id={recordId} type="Production" onsave={handleSave}></c-sooredflagstrategy>
+                                </div>
+                        </lightning-tab>
+                        <lightning-tab label="Action Items" value="6" onactive={handleActive}>
+                                <div>
+                                        <c-sootasks record-id={recordId} type="Production" onsave={handleSave}></c-sootasks>
+                                </div>
+                        </lightning-tab>
+                        <lightning-tab label="BU GM Help Needed" value="7" onactive={handleActive}>
+                                <div>
+                                        <c-sooexecutivehelp record-id={recordId} type="Production" onsave={handleSave}></c-sooexecutivehelp>
+                                </div>
+                        </lightning-tab>
+                        <!--<template if:true={hasPSC}>
+                                <lightning-tab label="Product Scorecard (PSC)" value="8" onactive={handleActive}>
+                                        <div>
+                                                <c-sooproductscorecard record-id={recordId} pscid={pscId} onsave={handleSave}></c-sooproductscorecard>
+                                        </div>
+                                </lightning-tab>
+                        </template>-->
+                        <lightning-tab label="Economic Value Analysis (EVA) and Vale Price Setting (VPS)" value="8" onactive={handleActive}>
+                                <div>
+                                        <c-sooeconomicvalue record-id={recordId} type="Production" onsave={handleSave}></c-sooeconomicvalue>
+                                </div>
+                        </lightning-tab>
+                        </lightning-tabset>
+                </template>
+        </lightning-tab>
+        </template>
+
+        </lightning-tabset>
+        </header>
+<!--<lightning-tabset active-tab-value={activeTab}>
+
+
+</lightning-tabset> -->
+        <footer class="slds-modal__footer"> <!-- -->
+                <!-- <template if:true={displaySave}>
+                <button class="slds-button slds-button_neutral" onclick={save}>Save</button>
+                </template>-->
+                <template if:false={isEVAProdTab}>
+                        <button class="slds-button slds-button_neutral" onclick={savemodal}>Save & Next</button>
+                </template>
+                <button class="slds-button slds-button_neutral" onclick={completemodal}>Save & Close</button>
+                <button class="slds-button slds-button_neutral" onclick={cancelmodal}>Cancel</button>
+        </footer>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>

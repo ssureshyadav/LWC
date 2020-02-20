@@ -1,0 +1,24 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td>
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td>
+                    <div class="form-group">
+                        Decision Maker
+                        <div>
+                            <select class="slds-select" onchange={handleDMakerPicklist}>
+                                    <template  for:each={dMakerArray} for:item="item">
+                                            <option key={item.key} value={item.key} >{item.value}</option>
+                                    </template>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <lightning-input type="text" label="Application Name" value={localpersonalwin.Personal_WIN__c} onchange={handlepersonWin}></lightning-input>
+                </td>
+            </tr>
+        </table>
+</template>

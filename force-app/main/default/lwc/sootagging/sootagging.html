@@ -1,0 +1,48 @@
+<template>
+    <lightning-record-edit-form object-api-name="SOO__c" onload={handleLoad} onsubmit={handleSubmit} onsuccess={handleSuccess} record-id={recordId}>
+        <!--<lightning-messages></lightning-messages> -->
+        <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                        <span class="slds-truncate" title="Section 1c. Corporate Tagging" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;">Section 1c. Corporate Tagging</span>
+                        </button>
+                </h3>
+                <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                                <lightning-input-field field-name="Large_Order_Pipeline__c"></lightning-input-field>          
+                        </div>
+                        <div class="slds-col" style="display: none;">
+                                <lightning-input-field field-name="Primary_Product_Scorecard__c" ></lightning-input-field>
+                                <lightning-input-field field-name="TAMBA__c"></lightning-input-field>
+                        </div>   
+                        <div class="slds-col">
+                                <lightning-input-field field-name="AGS_Prioritized_TAMBA__c"></lightning-input-field>
+                        </div>                        
+                        <div class="slds-col">
+                                <lightning-input-field field-name="TAMBA_Priority__c" onchange={handleTambaPriority}></lightning-input-field>
+                        </div>
+                        <template if:true={hasPSC}>
+                        <div class="slds-col">
+                                <div class="form-group">
+                                <label class="slds-form-element__label slds-no-flex">Primary Product Scorecard</label>
+                                <select class="slds-select" onchange={handlepscRecords}>
+                                        <template for:each={pscRecords} for:item="item">
+                                                <option key={item.id} value={item.id} >{item.Name}</option>
+                                        </template>
+                                </select>
+                                </div>
+                        </div>
+                        </template>                                     
+                </div>
+        </div>
+
+        <div class="slds-section slds-is-open">
+                <template if:true={loadTamba}>
+                        <c-soo-tamba record-id={recordId} ptamba-id={ptamba} ontambaselected={handleTambaselected} onptambaselected={handlePTamba}></c-soo-tamba>
+                </template>
+        </div>
+        <div style="display: none;">
+                <lightning-button class="submitButton" type="submit" name="update" label="Save & Next"> </lightning-button>
+        </div>
+        </lightning-record-edit-form>
+</template>

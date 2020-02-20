@@ -1,0 +1,66 @@
+<template>
+    <template if:false={selectedRecord}>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_4-of-4">
+            <div>
+                <!-- Create an Input Field where user can enter text to find the
+                Records-->
+                <lightning-input  
+                    label={label} value={searchKey} type="search"
+                    onchange={handleChange} placeholder="type text here"> <!-- variant="label-hidden"-->
+                </lightning-input>
+            </div>
+        </div>
+    </div>
+    <div>
+        <template if:false={selectedRecord}>
+            <template if:true={records}>
+                <template for:each={records} for:item="record">
+                        <div key={record.Id}>
+                                <lightning-button variant="base" label={record.Name} value={record.Id} title="Looks like a link" onclick={handleSelect} class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                </template>
+            </template>
+        </template>
+    </div>
+    </template>
+    <div class="slds-p-around_x-small">
+            <template if:true={selectedRecord}>
+                    <label class="slds-form-element__label slds-no-flex">{label}</label>
+                <div class="slds-combobox__form-element slds-input-has-icon 
+                                slds-input-has-icon_left-right" role="none">
+                        
+                        <span class="slds-icon_container
+                                    slds-icon-standard-account 
+                                    slds-combobox__input-entity-icon" title={title}>
+                            <lightning-icon icon-name={iconname} ></lightning-icon>
+                        </span>
+                        <input class="slds-input slds-combobox__input
+                               slds-combobox__input-value" 
+                               id="combobox-id-5" aria-controls="listbox-id-5" 
+                               autocomplete="off" role="textbox" type="text" 
+                               placeholder="Select an Option" readonly=""
+                               value={selectedRecord}
+                               disabled
+                               />
+                        <button class="sicon_container slds-button slds-button_icon 
+                                       slds-input__icon slds-input__icon_right" 
+                                title="Remove selected option"
+                                onclick={handleRemove}>
+                            <lightning-icon icon-name="utility:close" size="small">
+    
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Remove selected option</span>
+                        </button>
+                    </div>
+                <!--<lightning-layout>
+                    <lightning-layout-item>
+                        <lightning-pill label={selectedRecord.Name} onremove={handleRemove}>
+                            <lightning-icon icon-name={iconname}></lightning-icon>
+                        </lightning-pill>
+                    </lightning-layout-item>
+                </lightning-layout> -->
+            </template>
+        </div>
+        
+</template>

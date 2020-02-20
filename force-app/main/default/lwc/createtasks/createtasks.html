@@ -1,0 +1,45 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <tr>
+            <td>
+                <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+            </td>
+            <td style="width:15%;">
+                <div class="form-group">
+                    <label class="slds-form-element__label slds-no-flex">Strategy</label>
+                    <div>
+                        <select class="slds-select" onchange={handlestrategyChange}>
+                            <template  for:each={strategies} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td style="width: 30%;"><lightning-textarea name="input2" label="Action Item" value={localtask.Subject} onchange={handleSubject}></lightning-textarea></td>
+            <td>
+                <c-custom-lookuplwc object-name="User" iconname="standard:user" title="User" label="Owner" searchfield="Name" lookuprecordid={localtask.OwnerId} onselectedrec={handleUserRecord} ></c-custom-lookuplwc>
+            </td>
+            <td><lightning-input type="text" label="Non SFDC Owner" value={localtask.Non_SFDC_User_Action_Owner__c} onchange={handleOwner}></lightning-input></td>
+            <td>
+                <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <lightning-input type="date" name="input2" label="Due Date" value={localtask.ActivityDate} onchange={handleActivityDate}></lightning-input>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="slds-form-element__label slds-no-flex">Status</label>
+                    <div>
+                        <select class="slds-select" onchange={handleStatusChange}>
+                            <template  for:each={taskStatus} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </table>
+    </template>

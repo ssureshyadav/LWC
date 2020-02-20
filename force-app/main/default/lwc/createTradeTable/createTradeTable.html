@@ -1,0 +1,39 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td>
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td><lightning-input type="text" label="List Items that Applied wants" value={localtradeTable.Applied_Trade1__c} onchange={handleAppliedTrade}></lightning-input></td>
+                <td><lightning-input type="text" label="Trade Applied value in $" value={localtradeTable.Applied_Trade_Value1__c} onchange={handleAppliedTradeValue}></lightning-input></td>
+                <td>
+                    <!--<lightning-input style="border-right: 2px solid #000; border-color: grey;padding-right:1em;" type="text" label="$Value" value={localtradeTable.AMAT_Priority__c} onchange={handleAppliedCNAValue}></lightning-input>-->
+                    <div class="form-group">
+                            AMAT Priority
+                            <div>
+                                <select class="slds-select" onchange={handleAMATPriority}>
+                                    <template  for:each={amatPriority} for:item="item">
+                                            <option key={item} value={item} >{item}</option>
+                                    </template>
+                                </select>
+                            </div>
+                    </div>
+                </td>
+                <td><lightning-input type="text" label="List Items that Customer wants" value={localtradeTable.Customer_Trade1__c} onchange={handleCustomerTrade}></lightning-input></td>
+                <td><lightning-input type="text" label="$Value(in MS)" value={localtradeTable.Customer_Trade_Value1__c} onchange={handleCustomerTradeValue}></lightning-input></td>
+                <td>
+                    <!--<lightning-input type="text" label="$Value" value={localtradeTable.Customer_Priority__c} onchange={handleCustomerCNAValue}></lightning-input>-->
+                    <div class="form-group">
+                            Customer Priority
+                            <div>
+                                <select class="slds-select" onchange={handleCustomerPriority}>
+                                    <template  for:each={customerPriority} for:item="item">
+                                            <option key={item} value={item} >{item}</option>
+                                    </template>
+                                </select>
+                            </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+</template>

@@ -1,0 +1,35 @@
+<template>
+        <template if:true={isProd}>
+            <lightning-input type="checkbox" label="Same as R&D" onchange={copyRandD}></lightning-input><br>
+        </template>
+        <h3 class="slds-section__title">
+            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59"> 
+                   <table>
+                      <th style="width:45rem"><span class="slds-truncate" title="Section 3d. Trade Table from Applied Materials Side" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 3c. Trade Table from Applied Materials Side</span> </th>
+                      <th style="width:40rem"><span class="slds-truncate" title="Trade Table from Customer Side" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Trade Table from Customer Side</span> </th>
+                   </table>
+            </button> 
+        </h3>
+        <template if:true={isRd}>
+            <template  for:each={objcmpcount} for:item="obj">
+                <c-create-trade-table key={obj.label} selectedvalue={obj.label} trade-table={obj.value} ondeleteselected={handledeletedvalue} onvaluechanged={handlerValueChange}></c-create-trade-table>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createRDRecord}></lightning-button-icon>
+            </div>
+            <br/>
+            <button class="slds-button slds-button_neutral" type="button" onclick={handleSaveClick}>Save & Next</button>
+        </template>
+    
+        <template if:true={isProd}>
+            <template  for:each={prodobjcmpcount} for:item="obj">
+                <c-create-trade-table key={obj.label} selectedvalue={obj.label} trade-table={obj.value} ondeleteselected={handleProddeletedvalue} onvaluechanged={handlerProdValueChange}></c-create-trade-table>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createProdRecord}></lightning-button-icon>
+            </div>
+            <br/>
+            <button class="slds-button slds-button_neutral" type="button" onclick={handleSaveClick}>Save & Next</button>
+        </template>
+    
+    </template>

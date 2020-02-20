@@ -1,0 +1,23 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td style="width:3%;">
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td style="width:25%;">
+                        <div class="form-group">
+                                <label class="slds-form-element__label slds-no-flex">Category</label>
+                                <div>
+                                    <select class="slds-select" onchange={handlecategory}>
+                                        <template  for:each={category} for:item="item">
+                                                <option key={item} value={item} >{item}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                </td>
+                <td><lightning-input type="text" label="Specifics" value={localstrategy.Specifics__c} onchange={handleSpecifics}></lightning-input></td>
+                <td><lightning-input type="text" label="Strategy to Overcome Specifics" value={localstrategy.Strategy_to_Overcome_Specifics__c} onchange={handleOvercomeSpecifics}></lightning-input></td>
+            </tr>
+        </table>
+</template>

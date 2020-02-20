@@ -1,0 +1,35 @@
+<template>
+        <template if:true={isProd}>
+            <lightning-input type="checkbox" label="Same as R&D" onchange={copyRandD}></lightning-input><br>
+        </template>
+        
+        <h3 class="slds-section__title">
+                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                 <span class="slds-truncate" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 1h. Customer High Value Problem (HVP)</span>
+                </button>
+              </h3>
+        <template if:true={isRd}>
+            <template  for:each={objcmpcount} for:item="obj">
+                <c-createhvps key={obj.label} selectedvalue={obj.label} hvps={obj.value} ondeleteselected={handledeletedvalue} onvaluechanged={handlerValueChange}></c-createhvps>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createRDRecord}></lightning-button-icon>
+            </div>
+            <div style="display: none;">
+                <button class="submitButton" type="button" onclick={handleSaveClick}>Save & Next</button>
+            </div>
+        </template>
+    
+        <template if:true={isProd}>
+            <template  for:each={prodobjcmpcount} for:item="obj">
+                     <c-createhvps key={obj.label} selectedvalue={obj.label} hvps={obj.value} ondeleteselected={handleProddeletedvalue} onvaluechanged={handlerProdValueChange}></c-createhvps>
+            </template>
+            <div style="float: left;">
+                <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createProdRecord}></lightning-button-icon>
+            </div>
+            <div style="display: none;">
+                <button class="submitButton" type="button" onclick={handleSaveClick}>Save & Next</button>
+            </div>
+        </template>
+        
+    </template>

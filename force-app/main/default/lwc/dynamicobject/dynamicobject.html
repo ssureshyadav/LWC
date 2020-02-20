@@ -1,0 +1,101 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <tr>
+            <template if:true={isrd}>
+            <td>
+                <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+            </td>
+            </template>
+            <template if:false={isrd}>
+                <td>
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={proddeleteSelected}></lightning-button-icon>
+                </td>
+            </template>
+            <td>
+                <div class="form-group">
+                        Buyer Type
+                        <div>
+                            <select class="slds-select" onchange={handlebuyertypeChange}>
+                                <template  for:each={buyertype} for:item="item">
+                                        <option key={item} value={item} >{item}</option>
+                                </template>
+                            </select>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    Coach/Antagonist
+                    <div>
+                        <select class="slds-select" onchange={handleBuyerTypeNaChange}>
+                            <template  for:each={Buyer_TypeNa} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td><td>
+                <div class="form-group">
+                    Response Mode
+                    <div>
+                        <select class="slds-select" onchange={handleResponseModeChange}>
+                            <template  for:each={Response_Mode} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td><td>
+                <div class="form-group">
+                    Position to SSO
+                    <div>
+                        <select class="slds-select" onchange={handlePositionTOSOOChange}>
+                            <template  for:each={Position_to_SSO} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                        Influence Level
+                        <div>
+                            <select class="slds-select" onchange={handleInfluenceLevelChange}>
+                                <template  for:each={Influence_Level} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                                </template>
+                            </select>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    Competitive Alliance
+                    <div>
+                        <select class="slds-select" onchange={handleAllianceChange}>
+                            <template  for:each={Competitive_Alliance} for:item="item">
+                                <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    Commerical Position
+                    <div>
+                        <select class="slds-select" onchange={handlePositionChange}>
+                            <template  for:each={Commerical_Position} for:item="item">
+                                <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+            </div>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        </table>
+    </template>

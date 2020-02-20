@@ -1,0 +1,103 @@
+<template>
+    <lightning-record-edit-form object-api-name="SOO__c"  onsuccess={handleSaveClick} record-id={recordId}>
+        <lightning-output-field field-name="Primary_Product_Scorecard__c"></lightning-output-field>          
+        I have verified and agreed
+        <template if:false={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">Account Sales</span>
+                    <lightning-helptext content="Please check the box if you have aligned with Account Sales and agreed"></lightning-helptext>
+                        <lightning-input-field field-name="Account_Sales_R_D_for_PSC__c" variant="label-hidden"></lightning-input-field>          
+                </div>
+                <div class="slds-col">
+                    <span class="slds-form-element__label">BU BM</span>
+                    <lightning-helptext content="Please check the box if you have updated and aligned with BM"></lightning-helptext>
+                        <lightning-input-field label="BU BM" field-name="BU_BM_R_D_for_PSC__c" variant="label-hidden" onchange={handleBUBM}></lightning-input-field>
+                </div>
+                <div class="slds-col" style="width: 85%;"></div>
+            </div>
+        </template>
+        <template if:true={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">Account Sales</span>
+                    <lightning-helptext content="Please check the box if you have aligned with Account Sales and agreed"></lightning-helptext>
+                        <lightning-input-field field-name="Account_Sales_Prod_for_PSC__c" variant="label-hidden"></lightning-input-field>          
+                </div>
+                <div class="slds-col">
+                    <span class="slds-form-element__label">BU BM</span>
+                    <lightning-helptext content="Please check the box if you have updated and aligned with BM"></lightning-helptext>
+                        <lightning-input-field label="BU BM" field-name="BU_BM_Prod_for_PSC__c" variant="label-hidden" onchange={handleBUBM}></lightning-input-field>
+                </div>
+            </div>
+        </template>
+        <br/>
+<!--<fieldset class="slds-box slds-box_x-small slds-theme-|default slds-container-|small1">-->
+<table style="table-layout:fixed;" class="slds-table">
+
+        <thead style="vertical-align:top;">
+            <tr>
+                <td style="width:3%;border:1px solid #939090;"></td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:14%;border:1px solid #939090;" >  Date </td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:14%;border:1px solid #939090;" >  Items </td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:14%;border:1px solid #939090;" >  Value</td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:14%;border:1px solid #939090;" >  Items </td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:14%;border:1px solid #939090;">  Value</td>  
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:17%;border:1px solid #939090;">  Total Diff</td>
+                <td style="text-align:Center;font-size: 13px;font-weight:bold;width:17%;border:1px solid #939090;">  Total Value</td>
+            </tr>
+        </thead>
+        <tr>
+            <td style="padding-left: 12px; font-size: 13px;border:1px solid #939090;" >  1</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">{pscLastModifiedDate}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;" >  Now DPY {hasCompetitor}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;" >  {MaxNowDPYDiff}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;" >  Now COO  {hasCompetitor}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;" >  {MaxNowCoODiff}</td>
+            <td style="text-align:Center;font-size: 13px;background-color:rgb(233, 116, 13);border:1px solid #939090;color:white;">  Now Total  {hasCompetitor}</td>  
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">   {NowTotalDiff}</td>    
+        </tr>
+        <tr>
+            <td style="padding-left: 12px; font-size: 13px;border:1px solid #939090;" >  2</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">{pscLastModifiedDate}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">   Future DPY {hasCompetitor} </td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  
+                {MaxFutureDPYDiff}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  Future COO {hasCompetitor}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">            {MaxFutureCoODiff}  </td>
+            <td style="text-align:Center;font-size: 13px;background-color:rgb(233, 116, 13);border:1px solid #939090;color:white;">  Future Total {hasCompetitor}</td>  
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;"> {FutureTotalDiff}  </td>
+        </tr>
+        <tr>
+            <td style="padding-left: 12px; font-size: 13px;border:1px solid #939090;" >  3</td> 
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">{pscLastModifiedDate}</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  Total DPY Weight % </td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  {dpy}%</td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  Total COO Weight % </td>
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;">  {coo}% </td>
+            <td style="text-align:Center;font-size: 13px;background-color:rgb(233, 116, 13);border:1px solid #939090;color:white;">  Total Weight Diff % </td>  
+            <td style="text-align:Center;font-size: 13px;border:1px solid #939090;"> {total} % </td>  
+            
+        </tr> 
+    </table>
+        <template if:true={bubm}>
+            <template if:false={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <lightning-input-field field-name="BU_BM_Comments_R_D_for_PSC__c"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+            <template if:true={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <lightning-input-field field-name="BU_BM_Comments_Prod_for_PSC__c"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+        </template>
+        <div style="display: none;">
+            <lightning-button class="submitButton" type="submit" name="update" label="Save & Next"> </lightning-button>
+        </div>
+    </lightning-record-edit-form>
+</template>

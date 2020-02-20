@@ -1,0 +1,30 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <tr>
+                <td>
+                    <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+                </td>
+                <td style="width:30%;">
+                    <lightning-textarea name="input2" label="Help Needed" value={localexecutivehelp.Help_Needed__c} onchange={handleHelpNeeded}></lightning-textarea>
+                </td>
+                <td>
+                    <c-custom-lookuplwc object-name="User" label="Owner" searchfield="Name" lookuprecordid={localexecutivehelp.BU_Owner__c} onselectedrec={handleUserRecord} ></c-custom-lookuplwc>
+                </td>
+                <td>
+                    <lightning-input type="Date" label="Due Date" value={localexecutivehelp.Due_Date__c} onchange={handleDueDate}></lightning-input>
+                </td>
+                <td>
+                        <div class="form-group">
+                            <label class="slds-form-element__label slds-no-flex">Status</label>
+                                <div>
+                                    <select class="slds-select" onchange={handlestatus}>
+                                        <template  for:each={status} for:item="item">
+                                                <option key={item} value={item} >{item}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                </td>
+            </tr>
+        </table>
+</template>

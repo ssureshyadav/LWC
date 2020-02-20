@@ -1,0 +1,12 @@
+.slds-modal__container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 110rem;
+    min-width: 0rem;
+}
+
+.slds-modal__header {
+    height: 95%;
+    overflow-y: scroll;
+    text-align: left;
+}

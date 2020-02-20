@@ -1,0 +1,172 @@
+<template>
+        <template if:true={isProd}>
+                <lightning-input type="checkbox" label="Same as R&D" onchange={copyRandD}></lightning-input><br>
+        </template>
+        <lightning-record-edit-form object-api-name="SOO__c" onload={handleLoad} onsubmit={handleSubmit} onsuccess={handleSuccess} record-id={recordId}>
+        <lightning-messages></lightning-messages>
+        I have verified and agreed
+        <template if:false={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">BU BM</span>
+                    <lightning-helptext content="Please check the box if you have updated and aligned with BM"></lightning-helptext>
+                        <lightning-input-field variant="label-hidden" field-name="BU_BM_EVA_R_D__c" ></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Account Sales</span>
+                        <lightning-helptext content="Please check the box if you have aligned with Account Sales and agreed"></lightning-helptext>
+                        <lightning-input-field field-name="Account_Sales_EVA_R_D__c" variant="label-hidden" onchange={handleBUBM}></lightning-input-field>
+                </div>
+                <div class="slds-col" style="width: 85%;"></div>
+            </div>
+        </template>
+        <template if:true={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">BU BM</span>
+                    <lightning-helptext content="Please check the box if you have updated and aligned with BM"></lightning-helptext>
+                        <lightning-input-field label="BU BM" variant="label-hidden" field-name="BU_BM_EVA_Prod__c"></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Account Sales</span>
+                        <lightning-helptext content="Please check the box if you have aligned with Account Sales and agreed"></lightning-helptext>
+                        <lightning-input-field field-name="Account_Sales_EVA_Prod__c" variant="label-hidden" onchange={handleBUBM}></lightning-input-field>
+                </div>
+                <div class="slds-col" style="width: 85%;"></div>
+            </div>
+        </template>
+        <br/>
+        <h3 class="slds-section__title">
+                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+                 <span class="slds-truncate" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 4a.Economic Value Analysis (EVA) and Vale Price Setting (VPS)</span>
+                </button>
+              </h3>
+        <template if:true={isProd}>
+                <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                                <span class="slds-form-element__label">New Tool Penetration Opportunity</span>
+                                <lightning-input-field field-name="New_Tool_Penetration_Opportunities__c" variant="label-hidden" value={field8}></lightning-input-field>
+                                
+                                <div style="display: none;">
+                                        <lightning-input-field field-name="New_Tool_Penetration_Opportunity__c"></lightning-input-field>
+                                </div>
+                        </div>
+                        <div class="slds-col" style="width: 85%;"></div>
+                </div>
+                <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <span class="slds-form-element__label">EVA Reference Price</span>
+                        <lightning-input-field field-name="EVA_Reference_Tool_Price_Prod__c" value={field1} variant="label-hidden"></lightning-input-field>
+                        <div style="display: none;">
+                                <lightning-input-field field-name="EVA_Total_Economic_Value_Price__c"></lightning-input-field>
+                        </div>          
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Net Differentail value</span>
+                        <lightning-input-field field-name="EVA_Reference_Price_for_Prod__c" value={field2} variant="label-hidden"></lightning-input-field>
+                        <div style="display: none;">
+                                <lightning-input-field field-name="EVA_Reference_Price__c" ></lightning-input-field>
+                        </div>
+                </div>
+                                                                                
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Target Value Price Range</span>
+                                <lightning-input-field field-name="Target_Value_Price_Range__c" value={field5} variant="label-hidden"></lightning-input-field>
+                        <div style="display: none;">
+                                <lightning-input-field field-name="VPS_Value_Price_Range__c"></lightning-input-field>
+                        </div>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Applied Anchor Price</span>
+                        <lightning-input-field field-name="Applied_Anchor_Price_for_Prod__c" value={field3} variant="label-hidden"></lightning-input-field>
+                        <div style="display: none;">
+                                <lightning-input-field field-name="Initial_Anchor__c"></lightning-input-field>
+                        </div>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Customer Anchor Price</span>
+                        <lightning-input-field field-name="Customer_Anchor_Price_for_Prod__c" value={field4} variant="label-hidden"></lightning-input-field>
+                        <div style="display: none;">
+                                <lightning-input-field field-name="Customer_Anchor__c"></lightning-input-field>
+                        </div>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Applied Target Reference Price in SOO</span>
+                        <lightning-output-field field-name="Target_Price_in_USD__c" variant="label-hidden"></lightning-output-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Competitor Price</span>
+                        <lightning-output-field field-name="Competitor_Product_Price__c" variant="label-hidden"></lightning-output-field>
+                </div>
+                </div>
+        </template>
+
+        <template if:false={isProd}>
+                <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                                <lightning-input-field field-name="New_Tool_Penetration_Opportunity__c"></lightning-input-field>
+                        </div>
+                        <div class="slds-col" style="width: 85%;"></div>
+                </div>
+        <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                        <span class="slds-form-element__label">EVA Reference Price</span>
+                        <lightning-input-field field-name="EVA_Reference_Price__c" variant="label-hidden"></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Net Differentail Value</span>
+                        <lightning-input-field field-name="EVA_Total_Economic_Value_Price__c" variant="label-hidden"></lightning-input-field>          
+                </div>                                                          
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Target Value Price Range</span>
+                        <lightning-input-field field-name="VPS_Value_Price_Range__c" variant="label-hidden"></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Applied Anchor Price</span>
+                        <lightning-input-field field-name="Initial_Anchor__c" variant="label-hidden"></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Customer Anchor Price</span>
+                        <lightning-input-field field-name="Customer_Anchor__c" variant="label-hidden"></lightning-input-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Applied Target Reference Price in SOO</span>
+                        <lightning-output-field field-name="Target_Price_in_USD__c" variant="label-hidden"></lightning-output-field>
+                </div>
+                <div class="slds-col">
+                        <span class="slds-form-element__label">Competitor Price</span>
+                        <lightning-output-field field-name="Competitor_Product_Price__c" variant="label-hidden"></lightning-output-field>
+                </div>
+        </div>
+        </template>
+        <br/>
+        <template if:true={bubm}>
+            <template if:false={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">Account Sales Comments</span>
+                        <lightning-input-field field-name="Account_Comment_EVA_R_D__c" variant="label-hidden"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+            <template if:true={isProd}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <span class="slds-form-element__label">Account Sales Comments</span>
+                        <lightning-input-field field-name="Account_Comment_EVA_Prod__c" variant="label-hidden"></lightning-input-field>  
+                </div>
+            </div>
+            </template>
+        </template>
+        <template if:false={isProd}>
+                <div style="display: none;">
+                        <lightning-button class="submitButton" type="submit" name="update" label="Save & Next"> </lightning-button>
+                </div>
+        </template>
+        <template if:true={isProd}>
+                <div style="display: none;">
+                        <lightning-button class="submitButton" type="submit" name="update" label="Save & Complete"> </lightning-button>
+                </div>
+        </template>
+    </lightning-record-edit-form>
+</template>

@@ -1,0 +1,119 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/aMATEmployeeConfig": [
+                "aMATEmployeeConfig/aMATEmployeeConfig.js"
+            ],
+            "c/createConsequences": [
+                "createConsequences/createConsequences.js"
+            ],
+            "c/createMilestones": [
+                "createMilestones/createMilestones.js"
+            ],
+            "c/createTradeTable": [
+                "createTradeTable/createTradeTable.js"
+            ],
+            "c/createareastrength": [
+                "createareastrength/createareastrength.js"
+            ],
+            "c/createdecisionmakers": [
+                "createdecisionmakers/createdecisionmakers.js"
+            ],
+            "c/createexecutivehelp": [
+                "createexecutivehelp/createexecutivehelp.js"
+            ],
+            "c/createhvps": [
+                "createhvps/createhvps.js"
+            ],
+            "c/createpersonalwin": [
+                "createpersonalwin/createpersonalwin.js"
+            ],
+            "c/createredflagstrategy": [
+                "createredflagstrategy/createredflagstrategy.js"
+            ],
+            "c/createtasks": [
+                "createtasks/createtasks.js"
+            ],
+            "c/customLookuplwc": [
+                "customLookuplwc/customLookuplwc.js"
+            ],
+            "c/demo": [
+                "demo/demo.js"
+            ],
+            "c/demo1": [
+                "demo1/demo1.js"
+            ],
+            "c/dynamicobject": [
+                "dynamicobject/dynamicobject.js"
+            ],
+            "c/parentDemo": [
+                "parentDemo/parentDemo.js"
+            ],
+            "c/sOOEdit": [
+                "sOOEdit/sOOEdit.js"
+            ],
+            "c/sOOLWC": [
+                "sOOLWC/sOOLWC.js"
+            ],
+            "c/sOOLightningElement": [
+                "sOOLightningElement/sOOLightningElement.js"
+            ],
+            "c/sooConsequences": [
+                "sooConsequences/sooConsequences.js"
+            ],
+            "c/sooTamba": [
+                "sooTamba/sooTamba.js"
+            ],
+            "c/sooTradeTable": [
+                "sooTradeTable/sooTradeTable.js"
+            ],
+            "c/sooareastrength": [
+                "sooareastrength/sooareastrength.js"
+            ],
+            "c/soodecisionmakers": [
+                "soodecisionmakers/soodecisionmakers.js"
+            ],
+            "c/sooeconomicvalue": [
+                "sooeconomicvalue/sooeconomicvalue.js"
+            ],
+            "c/sooexecutivehelp": [
+                "sooexecutivehelp/sooexecutivehelp.js"
+            ],
+            "c/soohvps": [
+                "soohvps/soohvps.js"
+            ],
+            "c/soomilestones": [
+                "soomilestones/soomilestones.js"
+            ],
+            "c/soopersonalwin": [
+                "soopersonalwin/soopersonalwin.js"
+            ],
+            "c/sooproductscorecard": [
+                "sooproductscorecard/sooproductscorecard.js"
+            ],
+            "c/sooredflagstrategy": [
+                "sooredflagstrategy/sooredflagstrategy.js"
+            ],
+            "c/sootagging": [
+                "sootagging/sootagging.js"
+            ],
+            "c/sootasks": [
+                "sootasks/sootasks.js"
+            ],
+            "c/sOOClone": [
+                "sOOClone/sOOClone.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

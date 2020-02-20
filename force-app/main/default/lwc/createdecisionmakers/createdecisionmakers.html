@@ -1,0 +1,109 @@
+<template>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <tr>
+            <td>
+                <lightning-button-icon icon-name="utility:delete" variant="container" alternative-text="Delete" class="slds-m-left_xx-small" onclick={deleteSelected}></lightning-button-icon>
+            </td>
+            <td>
+                <c-custom-lookuplwc object-name="Contact" label="Decision Maker" searchfield="Name" lookuprecordid={localdecisionmaker.Decision_Maker__c} onselectedrec={handlecontactRecord} ></c-custom-lookuplwc>
+            </td>
+            <td>
+                <lightning-input type="text" label="Title" value={localdecisionmaker.Title1__c} disabled></lightning-input>
+            </td>
+            <td>
+                <div class="form-group">
+                        <label class="slds-form-element__label slds-no-flex">Buyer Type</label>
+                        <div>
+                            <select class="slds-select" onchange={handlebuyertypeChange}>
+                                <template  for:each={buyertype} for:item="item">
+                                        <option key={item} value={item} >{item}</option>
+                                </template>
+                            </select>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    
+                    <label class="slds-form-element__label slds-no-flex">Coach/Antagonist</label>
+                    <div>
+                        <select class="slds-select" onchange={handleBuyerTypeNaChange}>
+                            <template  for:each={Buyer_TypeNa} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td><td>
+                <div class="form-group">
+                    
+                    <label class="slds-form-element__label slds-no-flex">Response Mode</label>
+                    <div>
+                        <select class="slds-select" onchange={handleResponseModeChange}>
+                            <template  for:each={Response_Mode} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td><td>
+                <div class="form-group">
+                    
+                    <label class="slds-form-element__label slds-no-flex">Position to SSO</label>
+                    <div>
+                        <select class="slds-select" onchange={handlePositionTOSOOChange}>
+                            <template  for:each={Position_to_SSO} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                        
+                        <label class="slds-form-element__label slds-no-flex">Influence Level</label>
+                        <div>
+                            <select class="slds-select" onchange={handleInfluenceLevelChange}>
+                                <template  for:each={Influence_Level} for:item="item">
+                                    <option key={item} value={item} >{item}</option>
+                                </template>
+                            </select>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="slds-form-element__label slds-no-flex">Competitive Alliance</label>
+                    <div>
+                        <select class="slds-select" onchange={handleAllianceChange}>
+                            <template  for:each={Competitive_Alliance} for:item="item">
+                                <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label class="slds-form-element__label slds-no-flex">Commerical Position</label>
+                    <div>
+                        <select class="slds-select" onchange={handlePositionChange}>
+                            <template  for:each={Commerical_Position} for:item="item">
+                                <option key={item} value={item} >{item}</option>
+                            </template>
+                        </select>
+                    </div>
+            </div>
+            </td>
+
+            <td>
+                <div class="form-group">
+                    <div>
+                        <lightning-input type="text" label="Purchase status" value={localdecisionmaker.Purchase_Status__c} disabled></lightning-input>
+                    </div>
+            </div>
+            </td>
+        </tr>
+        </table>
+    </template>

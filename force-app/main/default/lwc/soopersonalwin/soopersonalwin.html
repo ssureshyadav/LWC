@@ -1,0 +1,34 @@
+<template>
+        <template if:true={isProd}>
+            <lightning-input type="checkbox" label="Same as R&D" onchange={copyRandD}></lightning-input><br>
+        </template>
+        <h3 class="slds-section__title">
+            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" style="background:#f95e59">
+            
+                <span class="slds-truncate" title="Section 1e. Milestone Details" style="text-align:left;color:#FFFFFF;height: 30px;text-transform:None;font-size: 15px;"> Section 1i. Key Decision Maker Personal Win</span>
+            </button> 
+        </h3>
+        <template if:true={isRd}>
+                <template if:true={selecteddmakerrecords}>            
+                    <template for:each={objcmpcount} for:item="obj">
+                        <c-createpersonalwin key={obj.label} selectedvalue={obj.label} personalwin={obj.value} dmakerrecords={selecteddmakerrecords} ondeleteselected={handledeletedvalue} onvaluechanged={handlerValueChange}></c-createpersonalwin>
+                    </template>                    
+                    <div style="float: left;">
+                        <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createRDRecord}></lightning-button-icon>
+                    </div>
+                </template>
+                <br/>
+            <button class="slds-button slds-button_neutral" type="button" onclick={handleSaveClick}>Save & Next</button>
+        </template>
+        <template if:true={isProd}>
+                <template for:each={prodobjcmpcount} for:item="obj">
+                    <c-createpersonalwin key={obj.label} selectedvalue={obj.label} personalwin={obj.value} dmakerrecords={selectedtambarecords} ondeleteselected={handleProddeletedvalue} onvaluechanged={handlerProdValueChange}></c-createpersonalwin>
+                </template>
+                <div style="float: left;">
+                    <lightning-button-icon icon-name="utility:add" variant="container" alternative-text="Add" class="slds-m-left_xx-small" onclick={createProdRecord}></lightning-button-icon>
+                </div>
+            <br/>
+            <button class="slds-button slds-button_neutral" type="button" onclick={handleSaveClick}>Save & Next</button>
+        </template>
+    
+    </template>
